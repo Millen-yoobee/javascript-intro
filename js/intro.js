@@ -74,9 +74,27 @@ for (var i = 0; i < people.length; i++)   //init i to 0; loop while i < 3 (becau
 }
 
 //Tell JS to find the button with id="hello"
-var helloButton = document.querySelector("#hello"); //searches for the location of the id "hello"
+var helloButton = document.querySelector("#hello"); //finds id "hello" in index.html & creates its ref in the var
 
 //Listens for clicks on the hello button
 helloButton.onclick = function() {
 	alert('Hi to you');
 }
+
+//A function that calculates the grand total
+function calculateGrandTotal( prices) {
+ 	// Defines variable grandTotal and initialising value to zero
+	var grandTotal = 0;
+	//Loop over all the prices
+	for (var i = 0; i < prices.length; i++) {
+		grandTotal = grandTotal + prices[i];
+	}
+	//Display the grandTotal
+	console.log(grandTotal);
+}
+//  Some shopping carts
+var cart1 = [20, 15, 12, 45, 90, 198];
+var cart2 = [1, 12, 4, 6, 21];
+
+calculateGrandTotal(cart1);
+calculateGrandTotal(cart2);
