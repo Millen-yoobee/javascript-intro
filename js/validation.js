@@ -4,10 +4,11 @@ var registrationForm = document.querySelector('#registration');
 //Wait for the user to submit the form
 registrationForm.onsubmit = function(event) {
 
-//   Patterns to use in validation, where username is made up of 1 word
-	var usernamePattern =  new RegExp("^[a-zA-Z0-9.#_-]{3,20}$");
+//count how many errors there are
+	var totalErrors = 0;
 
-	var namePattern =  new RegExp("^[a-zA-Z' .-]{1,30}$");
+//   Patterns to use in validation have been moved to patterns.js file
+
 
 // Get references to the input fields
 	var usernameImput = document.querySelector('#username');
@@ -16,6 +17,10 @@ registrationForm.onsubmit = function(event) {
 
 	var nameImput = document.querySelector('#full-name');
 	var nameMessage = document.querySelector('#full-name-message')
+
+	var campusOptions = document.querySelectorAll('[name=campus]');
+	var campusMessage = document.querySelector('#campus-message');
+
 
 //Check the username
 	if( usernamePattern.test( usernameImput.value)) {
@@ -27,6 +32,7 @@ registrationForm.onsubmit = function(event) {
 //username is invalid
 		console.log("username is invalid");
 		usernameMessage.innerHTML = "username is invalid";
+		totalErrors++;
 	}
 
 //Check the full-name
@@ -39,15 +45,31 @@ registrationForm.onsubmit = function(event) {
 //username is invalid
 		console.log("full name is invalid");
 		nameMessage.innerHTML = "full name is invalid";
+		totalErrors++;
+	}
+
+//loop over all the campus options
+	var campusIsSelected = false;
+	
+	for (var i=0; i<campusOptions.length; i++) {
+//check if this campus has been selected
+		if (campusOptions[i].checked) {
+			
+			campusIsSelected = true;
+		}
+	}
+
+	if (campusIsSelected == false) {
+		campusMessage.innerHTML = "Pleae select a campus";
+		totalErrors++;		}
+	else {
+		campusMessage.innerHTML = "";
+	}
+
+	if (totalErrors > 0) {
+ //Stop the form from submitting
+	event.preventDefault();    //but itself, prevents automatic form submission, so input can be validated
 	}
 
 
-
-
-
-
-
-
-	//Stop the form from submitting
-	event.preventDefault();    // To provent automatic submission, so input can be validated
 }
