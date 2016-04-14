@@ -21,6 +21,8 @@ registrationForm.onsubmit = function(event) {
 	var campusOptions = document.querySelectorAll('[name=campus]');
 	var campusMessage = document.querySelector('#campus-message');
 
+//to show all (default?) properties of var campusOptions
+	console.log(campusOptions);
 
 //Check the username
 	if( usernamePattern.test( usernameImput.value)) {
